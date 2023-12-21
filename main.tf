@@ -1,19 +1,6 @@
 provider "aws" {
-  access_key = "AKIAYWEWU63KYLP63L6Y"
-  secret_key = "3UJADciHct1mt4xBzz/PcoYXaTsdEG16yia9o6DJ"
+  profile = "default"
   region = "ca-central-1"  # Change this to your desired AWS region
-}
-
-resource "aws_security_group" "my_security_group" {
-  name        = "allow-http-ingress"
-  description = "Allow incoming traffic on port 80"
-
-  ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
 }
 
 resource "aws_instance" "my_instance" {
@@ -37,6 +24,18 @@ resource "aws_instance" "my_instance" {
             EOF
 
   vpc_security_group_ids = [aws_security_group.my_security_group.id]
+}
+
+resource "aws_security_group" "my_security_group" {
+  name        = "allow-http-ingress"
+  description = "Allow incoming traffic on port 80"
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 }
 
 output "public_ip" {
