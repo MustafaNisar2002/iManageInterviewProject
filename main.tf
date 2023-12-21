@@ -1,4 +1,6 @@
 provider "aws" {
+  access_key = "AKIAYWEWU63KYLP63L6Y"
+  secret_key = "3UJADciHct1mt4xBzz/PcoYXaTsdEG16yia9o6DJ"
   region = "ca-central-1"  # Change this to your desired AWS region
 }
 
